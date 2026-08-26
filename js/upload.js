@@ -141,8 +141,14 @@
       }
     }
 
-    // Manage Supabase Connection State & Setup Modal (Requirement #21)
+    // Manage Supabase Connection State & Password-Gated Setup Modal
     function checkSupabaseStatus() {
+      const authModal = document.getElementById('supabase-auth-modal');
+      const authPassInput = document.getElementById('supabase-admin-pass-input');
+      const authErrorMsg = document.getElementById('supabase-admin-error-msg');
+      const authCancelBtn = document.getElementById('cancel-supabase-auth-btn');
+      const authSubmitBtn = document.getElementById('submit-supabase-auth-btn');
+
       const modal = document.getElementById('supabase-config-modal');
       const closeBtn = document.getElementById('close-supabase-modal-btn');
       const cancelBtn = document.getElementById('cancel-supabase-modal-btn');
@@ -151,6 +157,58 @@
       const urlInput = document.getElementById('supabase-url-input');
       const keyInput = document.getElementById('supabase-key-input');
       const formContainer = document.querySelector('.glass-panel');
+
+      // Admin password required for opening Supabase settings
+      const ADMIN_PASS = '@Xyz12345';
+
+      function promptAdminAuth() {
+        if (authModal) {
+          authModal.style.display = 'flex';
+          if (authPassInput) {
+            authPassInput.value = '';
+            authPassInput.focus();
+          }
+          if (authErrorMsg) authErrorMsg.style.display = 'none';
+        } else {
+          openModal();
+        }
+      }
+
+      function handleAuthSubmit() {
+        const entered = authPassInput?.value || '';
+        if (entered === ADMIN_PASS) {
+          if (authModal) authModal.style.display = 'none';
+          if (authErrorMsg) authErrorMsg.style.display = 'none';
+          openModal();
+        } else {
+          const failMsg = 'dont try password is set by admin good luck';
+          if (authErrorMsg) {
+            authErrorMsg.textContent = failMsg;
+            authErrorMsg.style.display = 'block';
+          }
+          window.StudyShareApp.showToast(failMsg, 'error');
+          if (window.StudyShareDB && window.StudyShareDB.recordSecurityEvent) {
+            window.StudyShareDB.recordSecurityEvent('UNAUTHORIZED_SETTINGS_ACCESS', {
+              reason: 'Wrong password attempt for Supabase settings'
+            });
+          }
+        }
+      }
+
+      if (authSubmitBtn) authSubmitBtn.addEventListener('click', handleAuthSubmit);
+      if (authCancelBtn) authCancelBtn.addEventListener('click', () => {
+        if (authModal) authModal.style.display = 'none';
+      });
+      if (authPassInput) {
+        authPassInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') handleAuthSubmit();
+        });
+      }
+      if (authModal) {
+        authModal.addEventListener('click', (e) => {
+          if (e.target === authModal) authModal.style.display = 'none';
+        });
+      }
 
       function openModal() {
         if (modal) {
@@ -214,7 +272,7 @@
             </button>
           `;
           formContainer.parentNode.insertBefore(banner, formContainer);
-          document.getElementById('btn-edit-supabase-config')?.addEventListener('click', openModal);
+          document.getElementById('btn-edit-supabase-config')?.addEventListener('click', promptAdminAuth);
         } else {
           // Unconnected guidance
           banner.style.cssText = 'background: rgba(234, 179, 8, 0.12); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;';
@@ -233,7 +291,7 @@
             </button>
           `;
           formContainer.parentNode.insertBefore(banner, formContainer);
-          document.getElementById('btn-open-supabase-modal')?.addEventListener('click', openModal);
+          document.getElementById('btn-open-supabase-modal')?.addEventListener('click', promptAdminAuth);
         }
       }
     }

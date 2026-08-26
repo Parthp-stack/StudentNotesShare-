@@ -223,6 +223,31 @@
     </div>
   </footer>
 
+  <!-- Admin Password Gate Modal -->
+  <div id="supabase-auth-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 10001; align-items: center; justify-content: center; padding: 1rem;">
+    <div class="glass-card" style="max-width: 420px; width: 100%; padding: 2rem; border-radius: 18px; border: 1px solid rgba(239, 68, 68, 0.4); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+      <div style="width: 54px; height: 54px; margin: 0 auto 1rem; border-radius: 50%; background: rgba(239, 68, 68, 0.15); display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 1.5rem;">
+        <i class="fas fa-lock"></i>
+      </div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+        Admin Password Required
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+        Enter administrator password to access Supabase settings.
+      </p>
+      <div style="margin-bottom: 1rem;">
+        <input type="password" id="supabase-admin-pass-input" class="form-control" placeholder="Enter password..." style="text-align: center; font-size: 0.95rem; letter-spacing: 2px;">
+        <div id="supabase-admin-error-msg" style="display: none; margin-top: 0.75rem; font-size: 0.85rem; color: #ef4444; font-weight: 700; background: rgba(239, 68, 68, 0.1); padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.25);"></div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; justify-content: center;">
+        <button type="button" class="btn btn-secondary btn-sm" id="cancel-supabase-auth-btn" style="flex: 1;">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" id="submit-supabase-auth-btn" style="flex: 1;">
+          <i class="fas fa-unlock"></i> Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Supabase Cloud Setup Modal -->
   <div id="supabase-config-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 1rem;">
     <div class="glass-card" style="max-width: 520px; width: 100%; padding: 2rem; border-radius: 18px; border: 1px solid rgba(56, 189, 248, 0.3);">
