@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Explorer — StudyShare GPJ 2023–2026</title>
+  <meta name="description" content="Search and filter notes by semester, subject, and category for Government Polytechnic Jintur.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo" aria-label="StudyShare Home">
+        <div class="brand-icon-wrapper">
+          <i class="fas fa-atom"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">StudyShare <span class="brand-badge">GPJ</span></span>
+          <span class="brand-subtitle">2023–2026 Notes Hub</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="notes.html" class="nav-link active"><i class="fas fa-compass"></i> Explore Notes</a></li>
+        <li><a href="index.html#academic-structure" class="nav-link"><i class="fas fa-sitemap"></i> Subjects</a></li>
+        <li><a href="study-space.html" class="nav-link nav-special"><i class="fas fa-vr-cardboard"></i> 3D Study Space</a></li>
+        <li><a href="upload.html" class="nav-link"><i class="fas fa-cloud-upload-alt"></i> Upload Notes</a></li>
+        <li><a href="profile.html" class="nav-link"><i class="fas fa-bookmark"></i> Saved Bookmarks</a></li>
+        <li><a href="admin.html" class="nav-link"><i class="fas fa-shield-alt"></i> Admin Only</a></li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="mobile-menu-toggle" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="margin-bottom: 2rem;">
+        <span class="section-tag">Repository Explorer</span>
+        <h1 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 0.5rem;">
+          Find Educational Resources
+        </h1>
+        <p class="text-secondary">
+          Filter through handwritten lecture notes, practical files, question papers, and placement resources.
+        </p>
+      </div>
+
+      <!-- Advanced Filter & Search Box -->
+      <div class="filter-container">
+        <!-- Instant Search Input -->
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input 
+            type="text" 
+            id="search-notes-input" 
+            class="search-input" 
+            placeholder="Search by keywords, subject (e.g. DBMS, Java, OSY), title, or student name..."
+            aria-label="Search study materials"
+          >
+          <button id="clear-search-btn" class="clear-search-btn" title="Clear search">
+            <i class="fas fa-times-circle"></i>
+          </button>
+        </div>
+
+        <!-- Filter Dropdown Controls -->
+        <div class="filter-row">
+          <!-- Subject Select -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-subject">Subject</label>
+            <select id="filter-subject" class="filter-select">
+              <option value="all">All Subjects</option>
+            </select>
+          </div>
+
+          <!-- Category Select -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-category">Material Type</label>
+            <select id="filter-category" class="filter-select">
+              <option value="all">All Categories</option>
+              <option value="Notes">Notes</option>
+              <option value="Programming Language Cheat Sheets">Programming Language Cheat Sheets</option>
+              <option value="Previous Question Papers">Previous Question Papers</option>
+              <option value="Practical Files">Practical Files</option>
+              <option value="Important Questions">Important Questions</option>
+              <option value="Study Material">Study Material</option>
+              <option value="Lab Manuals">Lab Manuals</option>
+              <option value="Assignments">Assignments</option>
+              <option value="Interview Preparation">Interview Preparation</option>
+              <option value="Placement Material">Placement Material</option>
+              <option value="Projects">Projects</option>
+              <option value="Useful Educational Resources">Useful Educational Resources</option>
+              <option value="Other Student Contributions">Other Student Contributions</option>
+            </select>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="filter-group">
+            <label class="filter-label" for="filter-sort">Sort By</label>
+            <select id="filter-sort" class="filter-select">
+              <option value="newest">Newest First</option>
+              <option value="downloads">Most Downloaded</option>
+              <option value="helpful">Most Helpful Reactions</option>
+            </select>
+          </div>
+
+          <!-- Quick Actions Info -->
+          <div class="filter-group" style="justify-content: flex-end;">
+            <div style="font-size: 0.85rem; color: var(--brand-primary); font-weight: 700;" id="notes-results-count">
+              Loading notes...
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">
+              Instant client filtering
+            </div>
+          </div>
+        </div>
+
+        <!-- Semester Tabs -->
+        <div class="semester-tabs">
+          <button class="sem-tab-btn active" data-semester="all">All Semesters</button>
+          <button class="sem-tab-btn" data-semester="CO3K">CO3K (3rd Sem)</button>
+          <button class="sem-tab-btn" data-semester="CO4K">CO4K (4th Sem)</button>
+          <button class="sem-tab-btn" data-semester="CO5K">CO5K (5th Sem)</button>
+          <button class="sem-tab-btn" data-semester="CO6K">CO6K (6th Sem)</button>
+        </div>
+      </div>
+
+      <!-- Notes Grid -->
+      <div class="notes-grid" id="notes-grid-container">
+        <!-- Rendered dynamically by notes.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="notes-empty-state" style="display: none; text-align: center; padding: 4rem 1rem;">
+        <div style="width: 4.5rem; height: 4.5rem; border-radius: 50%; background: rgba(56, 189, 248, 0.1); color: var(--brand-primary); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem;">
+          <i class="fas fa-folder-open"></i>
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;">No notes uploaded yet.</h3>
+        <p style="color: var(--text-secondary); max-width: 420px; margin: 0 auto 1.5rem;">
+          Be the first student to contribute.
+        </p>
+        <a href="upload.html" class="btn btn-primary btn-glow">
+          <i class="fas fa-cloud-upload-alt"></i> Upload Notes Now
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar" style="border-top: none; padding-top: 0;">
+        <div>StudyShare • GPJ 2023–2026 Notes Hub — “Share Knowledge. Help Someone Learn.”</div>
+        <div><a href="upload.html" style="color: var(--brand-primary);">Upload & Help Someone Learn</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Application Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notes.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.StudyShareNotes.init();
+    });
+  </script>
+</body>
+</html>

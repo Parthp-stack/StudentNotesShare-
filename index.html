@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyShare — GPJ 2023–2026 Notes Hub | Share Knowledge. Help Someone Learn.</title>
+  <meta name="description" content="StudyShare is a modern futuristic notes-sharing platform for Government Polytechnic Jintur (GPJ) Diploma students. Share and discover notes, cheat sheets, practical files, and previous year papers.">
+
+  <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/3d.css">
+  <link rel="stylesheet" href="css/intro.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       STARTUP PURPOSE WINDOW & INTRO EXPERIENCE (Requirement #1 - #11)
+       ====================================================================== -->
+  <div id="startup-intro-overlay" class="startup-intro-overlay" role="dialog" aria-modal="true" aria-label="Welcome to StudyShare">
+    <!-- 3D Floating Academic Environment Canvas Backdrop -->
+    <div id="intro-3d-canvas" class="intro-canvas-backdrop"></div>
+
+    <!-- Glassmorphic Purpose Card -->
+    <div class="intro-modal-card">
+      <!-- 2D Fallback Decorative Icon (Shown if WebGL is unavailable) -->
+      <div id="intro-2d-fallback-icon" class="intro-2d-fallback-icon">
+        <i class="fas fa-atom"></i>
+      </div>
+
+      <!-- Institution Badge -->
+      <div class="intro-institution-tag">
+        <i class="fas fa-university"></i>
+        <span>Government Polytechnic Jintur</span>
+      </div>
+
+      <!-- Brand Title & Subtitle -->
+      <h1 class="intro-brand-title">StudyShare</h1>
+      <div class="intro-brand-subtitle">GPJ 2023–2026 Notes Hub</div>
+
+      <!-- Main Message -->
+      <div class="intro-main-motto">
+        “Share Knowledge. Help Someone Learn.”
+      </div>
+
+      <!-- Purpose Text -->
+      <p class="intro-purpose-text">
+        A student-powered platform where anyone can share useful notes, study material, cheat sheets, practical files, question papers and other educational resources to help fellow students.
+      </p>
+
+      <!-- Highlights Row -->
+      <div class="intro-highlights-row">
+        <div class="intro-highlight-pill accent">
+          <i class="fas fa-check-circle"></i>
+          <span>Anyone can contribute useful educational material</span>
+        </div>
+        <div class="intro-highlight-pill">
+          <i class="fas fa-lock-open"></i>
+          <span>No login required</span>
+        </div>
+        <div class="intro-highlight-pill">
+          <i class="fas fa-book-reader"></i>
+          <span>MSBTE K-Scheme Syllabus</span>
+        </div>
+      </div>
+
+      <!-- Action Button & Short Loading Transition -->
+      <div class="intro-action-group">
+        <button type="button" id="btn-enter-studyshare" class="btn-enter-studyshare" aria-label="Next to StudyShare">
+          <span>Next →</span>
+        </button>
+
+        <!-- Optional Short Loading Transition Indicator (Shown briefly after clicking Next) -->
+        <div id="intro-progress-container" class="intro-progress-container" style="display: none; margin-top: 0.5rem; margin-bottom: 0.25rem;">
+          <div class="intro-progress-status">
+            <span id="intro-status-text" class="intro-status-text">Preparing your Study Space…</span>
+          </div>
+          <div class="intro-progress-track">
+            <div id="intro-progress-fill" class="intro-progress-fill"></div>
+          </div>
+        </div>
+
+        <label class="intro-skip-future-row">
+          <input type="checkbox" id="intro-skip-checkbox">
+          <span>Skip intro on future visits</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="container navbar-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="StudyShare Home">
+        <div class="brand-icon-wrapper">
+          <i class="fas fa-atom"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">StudyShare <span class="brand-badge">GPJ</span></span>
+          <span class="brand-subtitle">2023–2026 Notes Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="notes.html" class="nav-link"><i class="fas fa-compass"></i> Explore Notes</a></li>
+        <li><a href="#academic-structure" class="nav-link"><i class="fas fa-sitemap"></i> Subjects</a></li>
+        <li><a href="study-space.html" class="nav-link nav-special" title="Enter Fullscreen 3D Study Space">
+            <i class="fas fa-vr-cardboard"></i> 3D Study Space
+          </a>
+        </li>
+        <li><a href="upload.html" class="nav-link"><i class="fas fa-cloud-upload-alt"></i> Upload Notes</a></li>
+        <li><a href="profile.html" class="nav-link"><i class="fas fa-bookmark"></i> Saved Bookmarks</a></li>
+        <li><a href="admin.html" class="nav-link"><i class="fas fa-shield-alt"></i> Admin Only</a></li>
+      </ul>
+
+      <!-- Right Actions (Theme Switcher & Quick Upload) -->
+      <div class="navbar-actions">
+        <button class="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+
+        <a href="upload.html" class="btn btn-primary btn-sm" title="Upload educational materials directly">
+          <i class="fas fa-cloud-upload-alt"></i> Upload Notes
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Hero Content -->
+          <div class="hero-content fade-in-up">
+            <div class="hero-badge-container">
+              <span class="hero-badge-dot"></span>
+              <span>GPJ 2023–2026 • No Login Required • Open Access</span>
+            </div>
+
+            <h1 class="hero-title">
+              Share Knowledge.<br>
+              <span class="text-gradient">Help Someone Learn.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Explore notes, cheat sheets, practicals and study material shared by students. No login required. Explore, learn and contribute.
+            </p>
+
+            <!-- Encouraging Message Banner -->
+            <div class="hero-encouragement-card">
+              <i class="fas fa-heart" style="color: var(--brand-rose); font-size: 1.25rem; flex-shrink: 0;"></i>
+              <div>
+                <strong>Have useful notes? Upload them and help someone.</strong> Every contribution empowers fellow diploma peers.
+              </div>
+            </div>
+
+            <!-- Hero Action Buttons (Requirement #4) -->
+            <div class="hero-cta-group">
+              <a href="notes.html" class="btn btn-primary btn-lg btn-glow">
+                <i class="fas fa-compass"></i> Explore Notes
+              </a>
+              <a href="upload.html" class="btn btn-secondary btn-lg">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Notes
+              </a>
+              <a href="study-space.html" class="btn btn-outline btn-lg" style="border-color: var(--brand-accent);">
+                <i class="fas fa-cube"></i> 3D Study Space
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Three.js Academic Tree Canvas -->
+          <div class="hero-canvas-card" id="hero-canvas-card">
+            <div id="hero-3d-canvas-container" style="width: 100%; height: 100%;">
+              <!-- Three.js Canvas will be mounted here -->
+            </div>
+
+            <!-- Canvas HUD Overlay -->
+            <div class="canvas-overlay-hud">
+              <div class="hud-pill" id="hero-3d-tooltip">
+                <i class="fas fa-hand-pointer"></i>
+                <span>Touch to rotate • Tap node to view</span>
+              </div>
+              <button type="button" class="hud-pill canvas-mode-toggle" id="toggle-hero-2d-btn" onclick="window.StudyShare3D.toggle2D()" title="Toggle 2D Academic View">
+                <i class="fas fa-sitemap"></i> 2D View
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2D Fallback View for Accessibility / Low-power devices -->
+        <div id="tree-fallback-view" class="tree-fallback-2d">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700;">Academic Tree (Accessible 2D Mode)</h3>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="window.StudyShare3D.toggle2D()">
+              <i class="fas fa-cube"></i> Switch to 3D Space
+            </button>
+          </div>
+          <div class="fallback-tree-diagram">
+            <div class="fallback-root">STUDYSHARE (GPJ 2023-2026)</div>
+            <div class="fallback-branches">
+              <div class="fallback-branch-card">
+                <span class="badge badge-co3k" style="margin-bottom: 0.5rem;">CO3K</span>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">DBMS • DTE • DSU • OOPS</div>
+              </div>
+              <div class="fallback-branch-card">
+                <span class="badge badge-co4k" style="margin-bottom: 0.5rem;">CO4K</span>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">DCN • Java • MIC</div>
+              </div>
+              <div class="fallback-branch-card">
+                <span class="badge badge-co5k" style="margin-bottom: 0.5rem;">CO5K</span>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">ACN • OSY • Software Testing</div>
+              </div>
+              <div class="fallback-branch-card">
+                <span class="badge badge-co6k" style="margin-bottom: 0.5rem;">CO6K</span>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">ML • Management • NIS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Counter Statistics Section (Dynamic Live Repository Metrics) -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <!-- Total Notes -->
+          <div class="stat-card">
+            <div class="stat-icon icon-notes">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-number" id="counter-total-notes">0</span>
+              <span class="stat-label">Total Notes</span>
+            </div>
+          </div>
+
+          <!-- Total Uploads -->
+          <div class="stat-card">
+            <div class="stat-icon icon-contributions">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-number" id="counter-total-uploads">0</span>
+              <span class="stat-label">Total Uploads</span>
+            </div>
+          </div>
+
+          <!-- Total Downloads -->
+          <div class="stat-card">
+            <div class="stat-icon icon-downloads">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-number" id="counter-total-downloads">0</span>
+              <span class="stat-label">Total Downloads</span>
+            </div>
+          </div>
+
+          <!-- Student Tips -->
+          <div class="stat-card">
+            <div class="stat-icon icon-students">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-number" id="counter-total-tips">0</span>
+              <span class="stat-label">Student Tips</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic Structure (Semesters & Subjects) Section -->
+    <section class="container" id="academic-structure" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
+      <div class="section-header">
+        <span class="section-tag">Curriculum Syllabus</span>
+        <h2 class="section-title">Government Polytechnic Jintur Semesters</h2>
+        <p class="section-desc">
+          Browse materials organized by MSBTE K-Scheme diploma curriculum semesters and subjects.
+        </p>
+      </div>
+
+      <div class="semester-grid">
+        <!-- CO3K -->
+        <div class="semester-card card-co3k">
+          <div class="semester-header">
+            <div>
+              <span class="badge badge-co3k">Semester 3</span>
+              <h3 class="semester-code">CO3K</h3>
+            </div>
+            <i class="fas fa-database" style="font-size: 1.8rem; color: var(--sem-co3k);"></i>
+          </div>
+          <div class="subject-pills">
+            <a href="notes.html?semester=CO3K&subject=DBMS" class="subject-pill-item">
+              <span>Database Management (DBMS)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO3K&subject=DTE" class="subject-pill-item">
+              <span>Digital Techniques (DTE)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO3K&subject=DSU" class="subject-pill-item">
+              <span>Data Structures in C (DSU)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO3K&subject=OOPS" class="subject-pill-item">
+              <span>Object Oriented (OOPS C++)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+          <a href="notes.html?semester=CO3K" class="btn btn-outline btn-sm" style="width: 100%;">
+            View CO3K Notes
+          </a>
+        </div>
+
+        <!-- CO4K -->
+        <div class="semester-card card-co4k">
+          <div class="semester-header">
+            <div>
+              <span class="badge badge-co4k">Semester 4</span>
+              <h3 class="semester-code">CO4K</h3>
+            </div>
+            <i class="fas fa-network-wired" style="font-size: 1.8rem; color: var(--sem-co4k);"></i>
+          </div>
+          <div class="subject-pills">
+            <a href="notes.html?semester=CO4K&subject=DCN" class="subject-pill-item">
+              <span>Data Networks (DCN)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO4K&subject=Java" class="subject-pill-item">
+              <span>Java Programming</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO4K&subject=MIC" class="subject-pill-item">
+              <span>Microprocessor & Int (MIC)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+          <a href="notes.html?semester=CO4K" class="btn btn-outline btn-sm" style="width: 100%;">
+            View CO4K Notes
+          </a>
+        </div>
+
+        <!-- CO5K -->
+        <div class="semester-card card-co5k">
+          <div class="semester-header">
+            <div>
+              <span class="badge badge-co5k">Semester 5</span>
+              <h3 class="semester-code">CO5K</h3>
+            </div>
+            <i class="fas fa-shield-virus" style="font-size: 1.8rem; color: var(--sem-co5k);"></i>
+          </div>
+          <div class="subject-pills">
+            <a href="notes.html?semester=CO5K&subject=ACN" class="subject-pill-item">
+              <span>Adv. Computer Networks (ACN)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO5K&subject=OSY" class="subject-pill-item">
+              <span>Operating Systems (OSY)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO5K&subject=Software%20Testing" class="subject-pill-item">
+              <span>Software Testing</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+          <a href="notes.html?semester=CO5K" class="btn btn-outline btn-sm" style="width: 100%;">
+            View CO5K Notes
+          </a>
+        </div>
+
+        <!-- CO6K -->
+        <div class="semester-card card-co6k">
+          <div class="semester-header">
+            <div>
+              <span class="badge badge-co6k">Semester 6</span>
+              <h3 class="semester-code">CO6K</h3>
+            </div>
+            <i class="fas fa-brain" style="font-size: 1.8rem; color: var(--sem-co6k);"></i>
+          </div>
+          <div class="subject-pills">
+            <a href="notes.html?semester=CO6K&subject=Machine%20Learning" class="subject-pill-item">
+              <span>Machine Learning (ML)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO6K&subject=Management" class="subject-pill-item">
+              <span>Management Principles</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+            <a href="notes.html?semester=CO6K&subject=NIS" class="subject-pill-item">
+              <span>Network Security (NIS)</span>
+              <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
+            </a>
+          </div>
+          <a href="notes.html?semester=CO6K" class="btn btn-outline btn-sm" style="width: 100%;">
+            View CO6K Notes
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Uploaded Notes Showcase -->
+    <section class="container" style="padding-bottom: 4rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="section-tag">Community Contributions</span>
+          <h2 class="section-title" style="margin-bottom: 0;">Featured Study Materials</h2>
+        </div>
+        <a href="notes.html" class="btn btn-secondary">
+          Explore All Materials <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Notes Grid dynamically populated -->
+      <div class="notes-grid" id="notes-grid-container">
+        <!-- Rendered by notes.js -->
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="container" style="padding-bottom: 4rem;">
+      <div class="glass-panel" style="padding: 3rem 2rem; text-align: center; background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%); border-color: var(--border-glow);">
+        <h2 style="font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem;">
+          Have Useful Study Material or Notes?
+        </h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 2rem;">
+          Don’t let your hard work sit idle on your phone. Upload your handwritten notes, solved papers, and lab manuals to help your fellow GPJ peers succeed.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="upload.html" class="btn btn-primary btn-lg btn-glow">
+            <i class="fas fa-cloud-upload-alt"></i> Upload Notes Now
+          </a>
+          <a href="study-space.html" class="btn btn-outline btn-lg">
+            <i class="fas fa-vr-cardboard"></i> Enter 3D Study Space
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modern Futuristic Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Motto -->
+        <div class="footer-brand-col">
+          <div class="brand-logo">
+            <div class="brand-icon-wrapper">
+              <i class="fas fa-atom"></i>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">StudyShare</span>
+              <span class="brand-subtitle">GPJ 2023–2026 Notes Hub</span>
+            </div>
+          </div>
+          <p class="footer-motto">
+            “Share Knowledge. Help Someone Learn.”<br>
+            A futuristic student notes-sharing hub built for Government Polytechnic Jintur Diploma students.
+          </p>
+          <div style="color: var(--brand-primary); font-weight: 600; font-size: 0.85rem;">
+            Built for students, powered by collaboration.
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-links-col">
+          <h4>Explore Platform</h4>
+          <ul class="footer-links-list">
+            <li><a href="notes.html">Explore All Notes</a></li>
+            <li><a href="upload.html">Upload Study Material</a></li>
+            <li><a href="#academic-structure">Semester Curriculum</a></li>
+            <li><a href="study-space.html">3D / VR Study Space</a></li>
+            <li><a href="profile.html">My Saved Bookmarks</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Academic Semesters -->
+        <div class="footer-links-col">
+          <h4>Semesters (MSBTE)</h4>
+          <ul class="footer-links-list">
+            <li><a href="notes.html?semester=CO3K">CO3K — 3rd Semester</a></li>
+            <li><a href="notes.html?semester=CO4K">CO4K — 4th Semester</a></li>
+            <li><a href="notes.html?semester=CO5K">CO5K — 5th Semester</a></li>
+            <li><a href="notes.html?semester=CO6K">CO6K — 6th Semester</a></li>
+            <li><a href="notes.html?category=Placement+Material">Placement Materials</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Open Access & Monitoring -->
+        <div class="footer-links-col">
+          <h4>Open Access</h4>
+          <ul class="footer-links-list">
+            <li><a href="notes.html">Explore Notes</a></li>
+            <li><a href="upload.html">Upload & Share Notes</a></li>
+            <li><a href="study-space.html">3D Study Space</a></li>
+            <li><a href="#" onclick="window.StudyShareIntro && window.StudyShareIntro.replay(); return false;"><i class="fas fa-play-circle"></i> Purpose & Intro</a></li>
+            <li><a href="admin.html">Admin Only</a></li>
+            <li><span style="font-size: 0.825rem; color: var(--brand-primary);"><i class="fas fa-check-circle"></i> No Login Required</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2023–2026 StudyShare • Government Polytechnic Jintur. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#" style="color: var(--text-muted);">Academic Fair Use</a>
+          <a href="#" style="color: var(--text-muted);">Privacy Policy</a>
+          <a href="admin.html" style="color: var(--brand-primary);"><i class="fas fa-shield-alt"></i> Admin Only</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Application Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/intro.js"></script>
+
+  <!-- Page Initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Initialize 3D Hero Academic Tree
+      if (window.StudyShare3D) {
+        window.StudyShare3D.init();
+      }
+
+      // 2. Real-time statistics from shared Firestore (Requirement #19)
+      if (window.StudyShareDB) {
+        window.StudyShareDB.subscribeToStats((stats) => {
+          window.StudyShareApp.animateCounter(document.getElementById('counter-total-notes'), stats.totalNotes);
+          window.StudyShareApp.animateCounter(document.getElementById('counter-total-uploads'), stats.totalUploads);
+          window.StudyShareApp.animateCounter(document.getElementById('counter-total-downloads'), stats.totalDownloads);
+          window.StudyShareApp.animateCounter(document.getElementById('counter-total-tips'), stats.totalTips);
+        });
+
+        // 3. Real-time recent uploads showcase from shared Firestore (Requirement #4 & #5)
+        const container = document.getElementById('notes-grid-container');
+        if (container && window.StudyShareNotes) {
+          window.StudyShareDB.subscribeToNotes((notes) => {
+            if (notes.length === 0) {
+              container.innerHTML = `
+                <div style="text-align: center; padding: 3.5rem 1.5rem; background: var(--bg-surface); border: 1px dashed var(--border-subtle); border-radius: var(--radius-lg); grid-column: 1 / -1;">
+                  <div style="font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 0.75rem;"><i class="fas fa-folder-open"></i></div>
+                  <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem;">No notes uploaded yet.</h3>
+                  <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">Be the first student to contribute.</p>
+                  <a href="upload.html" class="btn btn-primary btn-sm"><i class="fas fa-cloud-upload-alt"></i> Upload Notes Now</a>
+                </div>
+              `;
+            } else {
+              container.innerHTML = notes.slice(0, 6).map(window.StudyShareNotes.renderCard).join('');
+            }
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

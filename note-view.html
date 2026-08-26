@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Material Preview — StudyShare</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo" aria-label="StudyShare Home">
+        <div class="brand-icon-wrapper"><i class="fas fa-atom"></i></div>
+        <div class="brand-text">
+          <span class="brand-title">StudyShare <span class="brand-badge">GPJ</span></span>
+          <span class="brand-subtitle">2023–2026 Notes Hub</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="notes.html" class="nav-link active"><i class="fas fa-compass"></i> Explore Notes</a></li>
+        <li><a href="study-space.html" class="nav-link nav-special"><i class="fas fa-vr-cardboard"></i> 3D Study Space</a></li>
+        <li><a href="upload.html" class="nav-link"><i class="fas fa-cloud-upload-alt"></i> Upload Notes</a></li>
+        <li><a href="profile.html" class="nav-link"><i class="fas fa-bookmark"></i> Saved Bookmarks</a></li>
+        <li><a href="admin.html" class="nav-link"><i class="fas fa-shield-alt"></i> Admin Only</a></li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="mobile-menu-toggle" aria-label="Toggle Mobile Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Back Breadcrumb Link -->
+      <div style="margin-bottom: 1.5rem;">
+        <a href="notes.html" class="btn btn-outline btn-sm">
+          <i class="fas fa-arrow-left"></i> Back to Notes Explorer
+        </a>
+      </div>
+
+      <!-- Detail Grid -->
+      <div class="note-view-grid">
+        
+        <!-- Left: In-Browser Document Viewer & Student Tips -->
+        <div>
+          <!-- Viewer Card -->
+          <div class="note-viewer-canvas-card">
+            <div class="viewer-header-bar">
+              <div class="viewer-title-group">
+                <div class="viewer-file-icon">
+                  <i class="far fa-file-pdf"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.95rem;">In-Browser Academic Preview</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">GPJ Student Document</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-secondary btn-sm" onclick="window.print()" title="Print this document">
+                  <i class="fas fa-print"></i> Print
+                </button>
+              </div>
+            </div>
+
+            <!-- Preview Canvas / Simulated Document Container -->
+            <div id="note-preview-wrapper" class="viewer-preview-container">
+              <!-- Rendered by note-view.js -->
+            </div>
+          </div>
+
+          <!-- Student Tips & Reactions Section (Requirement #6 & #7) -->
+          <div class="glass-panel" style="margin-top: 2rem; padding: 2rem;">
+            <div class="tips-header">
+              <div>
+                <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.25rem;">
+                  Student Tips & Reactions
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                  Leave an encouraging 3-word revision tip to help other students learn.
+                </p>
+              </div>
+              <span class="badge" style="background: rgba(56, 189, 248, 0.12); color: var(--brand-primary); border: 1px solid rgba(56, 189, 248, 0.3);">
+                <i class="fas fa-shield-alt"></i> Local Token Protected
+              </span>
+            </div>
+
+            <!-- Mandatory Rule Explanation Notice -->
+            <div class="tip-policy-notice">
+              <i class="fas fa-info-circle"></i>
+              <span><strong>3-Word Rule:</strong> Student tips must be concise and contain <strong>EXACTLY THREE WORDS</strong> (e.g. <em>“Very useful notes”</em>, <em>“Best exam revision”</em>, <em>“Easy to understand”</em>, <em>“Great practical examples”</em>). Tips are editable by this browser via a local temporary edit token.</span>
+            </div>
+
+            <!-- Add Tip Form (Requirement #5 & #6) -->
+            <div class="tip-input-box">
+              <div style="margin-bottom: 0.6rem;">
+                <label for="tip-author-name" style="font-size: 0.825rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">Your Name: *</label>
+                <input 
+                  type="text" 
+                  id="tip-author-name" 
+                  class="form-control" 
+                  placeholder="Enter your name (e.g. Rahul Sharma)" 
+                  style="max-width: 320px; font-size: 0.875rem;" 
+                  required
+                >
+              </div>
+
+              <div class="tip-field-header">
+                <label for="new-tip-input">3-Word Tip: *</label>
+                <span id="tip-word-counter" class="word-count-badge">0/3 words</span>
+              </div>
+              <input 
+                type="text" 
+                id="new-tip-input" 
+                class="tip-input" 
+                placeholder="Type exactly 3 words (e.g. Best exam revision)..." 
+                maxlength="60"
+              >
+              <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+                <button id="submit-tip-btn" class="btn btn-primary btn-sm" disabled>
+                  <i class="fas fa-paper-plane"></i> Share 3-Word Tip
+                </button>
+              </div>
+            </div>
+
+            <!-- Tips List -->
+            <div class="tips-list" id="note-tips-list">
+              <!-- Rendered by tips.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Metadata Sidebar & Actions -->
+        <aside>
+          <!-- Metadata Card -->
+          <div class="note-sidebar-card">
+            <!-- Badges -->
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <span id="note-sem-badge" class="badge badge-co3k">CO3K</span>
+              <span id="note-subject-badge" class="badge badge-neutral">DBMS</span>
+              <span id="note-category-badge" class="badge badge-category">Notes</span>
+            </div>
+
+            <h2 id="note-detail-title" style="font-size: 1.35rem; font-weight: 800; line-height: 1.35; margin-bottom: 1rem;">
+              Loading note title...
+            </h2>
+
+            <p id="note-detail-description" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Loading description...
+            </p>
+
+            <!-- Tags -->
+            <div id="note-tags-container" style="display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 1.5rem;"></div>
+
+            <!-- Helpful Reaction & Bookmark -->
+            <div class="reaction-buttons-box">
+              <button id="toggle-helpful-btn" class="btn-helpful" title="Did this note help your revision?">
+                <i class="fas fa-heart"></i>
+                <span>Helpful (<span id="note-helpful-count">0</span>)</span>
+              </button>
+              <button id="note-bookmark-btn" class="btn btn-secondary btn-sm" style="flex: 1;">
+                <i class="far fa-bookmark"></i> Bookmark
+              </button>
+            </div>
+
+            <!-- Primary Download Button & Open Original Link -->
+            <button id="note-download-btn" class="btn btn-primary btn-lg btn-glow" style="width: 100%; margin-bottom: 0.75rem;">
+              <i class="fas fa-download"></i> Download Original File
+            </button>
+            <a id="note-open-original-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; margin-bottom: 1.5rem; justify-content: center; display: none;">
+              <i class="fas fa-external-link-alt"></i> Open Original in New Tab
+            </a>
+
+            <!-- Metadata List -->
+            <div class="sidebar-meta-list">
+              <div class="sidebar-meta-item">
+                <span class="sidebar-meta-label">Uploaded by</span>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                  <span id="note-uploader-avatar" class="uploader-avatar" style="width: 1.4rem; height: 1.4rem; font-size: 0.6rem;">GP</span>
+                  <span id="note-uploader-name" class="sidebar-meta-val">Student</span>
+                </div>
+              </div>
+              <div class="sidebar-meta-item">
+                <span class="sidebar-meta-label">Date Uploaded</span>
+                <span id="note-upload-date" class="sidebar-meta-val">-</span>
+              </div>
+              <div class="sidebar-meta-item">
+                <span class="sidebar-meta-label">File Size</span>
+                <span id="note-file-size" class="sidebar-meta-val">PDF • 4.8 MB</span>
+              </div>
+              <div class="sidebar-meta-item">
+                <span class="sidebar-meta-label">Total Downloads</span>
+                <span id="note-download-count" class="sidebar-meta-val">0</span>
+              </div>
+            </div>
+
+            <!-- Report Material Button -->
+            <div style="padding-top: 1rem; border-top: 1px solid var(--border-subtle); text-align: center;">
+              <button id="report-note-btn" class="btn btn-outline btn-sm" style="color: var(--text-muted); font-size: 0.8rem; border-style: dashed;">
+                <i class="fas fa-flag"></i> Report Inappropriate Material
+              </button>
+            </div>
+          </div>
+
+          <!-- Encouragement Box -->
+          <div class="glass-card" style="border-left: 3px solid var(--brand-primary);">
+            <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.35rem; color: var(--brand-primary);">
+              <i class="fas fa-lightbulb"></i> GPJ Community Spirit
+            </div>
+            <p style="font-size: 0.825rem; color: var(--text-secondary); margin: 0;">
+              “Don’t just download notes — upload yours and help someone learn.” Together, our 2023–2026 batch makes engineering easier.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Report Material Modal -->
+  <div id="report-modal-backdrop" class="security-modal-backdrop">
+    <div class="security-modal" style="max-width: 480px; text-align: left; border-color: var(--border-glass); box-shadow: var(--shadow-lg);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--brand-rose); display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fas fa-flag"></i> Report Educational Material
+        </h3>
+        <button id="close-report-modal-btn" style="color: var(--text-muted);"><i class="fas fa-times"></i></button>
+      </div>
+
+      <form id="report-note-form">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Help the department keep StudyShare clean, accurate, and aligned with the GPJ syllabus.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Wrong Subject" required>
+            <span>Wrong subject or semester classification</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Incorrect Content">
+            <span>Incorrect / misleading academic content</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Duplicate">
+            <span>Duplicate resource already available</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Copyright Issue">
+            <span>Copyright or intellectual property issue</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Inappropriate Content">
+            <span>Inappropriate or non-educational content</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+            <input type="radio" name="report-reason" value="Other">
+            <span>Other issue</span>
+          </label>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label for="report-reporter-name" style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem; display: block;">Your Name (Optional)</label>
+          <input type="text" id="report-reporter-name" class="form-control" placeholder="Anonymous Student">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label for="report-details" style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem; display: block;">Additional Details (Optional)</label>
+          <textarea id="report-details" class="form-control" rows="3" placeholder="Briefly describe what needs attention..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button type="button" id="cancel-report-btn" class="btn btn-secondary btn-sm">Cancel</button>
+          <button type="submit" class="btn btn-danger btn-sm">Submit Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Anti-Tampering Security Warning Modal Container (Rendered dynamically by tips.js) -->
+  <div id="security-alert-modal" class="security-modal-backdrop"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar" style="border-top: none; padding-top: 0;">
+        <div>StudyShare • GPJ 2023–2026 Notes Hub — “Share Knowledge. Help Someone Learn.”</div>
+        <div><a href="upload.html" style="color: var(--brand-primary);">Upload & Help Someone Learn</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Application Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tips.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/note-view.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.StudyShareNoteView.init();
+    });
+  </script>
+</body>
+</html>

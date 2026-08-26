@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to StudyShare — GPJ 2023–2026</title>
+  <meta name="description" content="Government Polytechnic Jintur StudyShare — Share Knowledge. Help Someone Learn.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/intro.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #070a13;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-screen Startup Intro Window -->
+  <div id="startup-intro-overlay" class="startup-intro-overlay" style="display: flex;">
+    <!-- 3D Canvas Backdrop -->
+    <div id="intro-3d-canvas" class="intro-canvas-backdrop"></div>
+
+    <!-- Purpose Window Card -->
+    <div class="intro-modal-card">
+      <div id="intro-2d-fallback-icon" class="intro-2d-fallback-icon">
+        <i class="fas fa-atom"></i>
+      </div>
+
+      <!-- Institution Badge -->
+      <div class="intro-institution-tag">
+        <i class="fas fa-university"></i>
+        <span>Government Polytechnic Jintur</span>
+      </div>
+
+      <!-- Brand Title & Subtitle -->
+      <h1 class="intro-brand-title">StudyShare</h1>
+      <div class="intro-brand-subtitle">GPJ 2023–2026 Notes Hub</div>
+
+      <!-- Main Message -->
+      <div class="intro-main-motto">
+        “Share Knowledge. Help Someone Learn.”
+      </div>
+
+      <!-- Purpose Text -->
+      <p class="intro-purpose-text">
+        A student-powered platform where anyone can share useful notes, study material, cheat sheets, practical files, question papers and other educational resources to help fellow students.
+      </p>
+
+      <!-- Highlights Row -->
+      <div class="intro-highlights-row">
+        <div class="intro-highlight-pill accent">
+          <i class="fas fa-check-circle"></i>
+          <span>Anyone can contribute useful educational material</span>
+        </div>
+        <div class="intro-highlight-pill">
+          <i class="fas fa-lock-open"></i>
+          <span>No login required</span>
+        </div>
+        <div class="intro-highlight-pill">
+          <i class="fas fa-book-reader"></i>
+          <span>MSBTE K-Scheme Syllabus</span>
+        </div>
+      </div>
+
+      <!-- Action Button & Short Loading Transition -->
+      <div class="intro-action-group">
+        <button type="button" id="btn-enter-studyshare" class="btn-enter-studyshare" aria-label="Next to StudyShare">
+          <span>Next →</span>
+        </button>
+
+        <!-- Optional Short Loading Transition Indicator (Shown briefly after clicking Next) -->
+        <div id="intro-progress-container" class="intro-progress-container" style="display: none; margin-top: 0.5rem; margin-bottom: 0.25rem;">
+          <div class="intro-progress-status">
+            <span id="intro-status-text" class="intro-status-text">Preparing your Study Space…</span>
+          </div>
+          <div class="intro-progress-track">
+            <div id="intro-progress-fill" class="intro-progress-fill"></div>
+          </div>
+        </div>
+
+        <label class="intro-skip-future-row">
+          <input type="checkbox" id="intro-skip-checkbox">
+          <span>Skip intro on future visits</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Application Modules -->
+  <script src="js/theme.js"></script>
+  <script src="js/intro.js"></script>
+
+  <script>
+    // In standalone intro.html, transition navigates to index.html
+    window.addEventListener('studyshare:intro-completed', () => {
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
