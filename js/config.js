@@ -16,8 +16,8 @@ window.STUDYSHARE_CONFIG = {
   // Provide your Supabase project URL and anon/public key.
   // Obtain these from Supabase Dashboard > Project Settings > API
   supabaseConfig: {
-    url: "",
-    anonKey: ""
+    url: "https://izssdijphvvrkgyjsjkh.supabase.co",
+    anonKey: "sb_publishable_1OvG1YbX06l3G3ML0gl1hQ_-cd60t2P"
   },
 
   // Academic Structure: GPJ Computer Engineering (CO3K - CO6K)
